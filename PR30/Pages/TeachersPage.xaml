@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PR30.Pages"
         mc:Ignorable="d"
-        Title="TeachersPage" Height="450" Width="800">
+        Title="TeachersPage" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="TestTable"
+                  AutoGenerateColumns="True"
+                  ItemsSource="{Binding}">
+        </DataGrid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Номер студенческого билета:"
+                       Style="{StaticResource MyTextBlock}"
+                       FontSize="16"/>
+            <TextBox x:Name="SearchBox"
+                     Style="{StaticResource MyTextBox}"
+                     FontSize="20"
+                     TextChanged="SearchBox_TextChanged"
+                     Grid.Row="1"
+                     />
+            <Button x:Name="Export"
+                    Content="Экспорт"
+                    FontSize="40"
+                    Margin="30"
+                    Style="{StaticResource MyButton}" Click="Export_Click"
+                        Grid.Row="2"
+                    />
+            <Button x:Name="View"
+                  Content="Посмотреть тест"
+                  FontSize="20"
+                  Margin="30"
+                  Style="{StaticResource MyButton}"
+                  Grid.Row="3"
+                  Click="View_Click"
+                  />
+        </Grid>
     </Grid>
 </Window>

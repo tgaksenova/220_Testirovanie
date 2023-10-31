@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Jack_Voron\Documents\GitHub\TRPO-PR30\PR30\App.xaml
-1219584333
-1-1901698733
-8-788418393
+6-1068119800
+21211789495
+211185743429
 181781682605
-MainWindow.xaml;
+MainWindow.xaml;Pages\Registration.xaml;Pages\StudentsPage.xaml;Pages\TeachersPage.xaml;Pages\TestWindow.xaml;Styles\Style.xaml;
 
-True
+False
 

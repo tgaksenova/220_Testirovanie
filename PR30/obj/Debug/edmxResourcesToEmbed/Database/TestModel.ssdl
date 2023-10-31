@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TestModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="QuestionsReports">
+    <Key>
+      <PropertyRef Name="IDTestQuestions" />
+      <PropertyRef Name="IDTestingReport" />
+    </Key>
+    <Property Name="IDTestQuestions" Type="int" Nullable="false" />
+    <Property Name="IDTestingReport" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="NumberStudentCard" />
+    </Key>
+    <Property Name="NumberStudentCard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentGroup" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="TestingReport">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateTesting" Type="date" Nullable="false" />
+    <Property Name="IDStudent" Type="int" Nullable="false" />
+    <Property Name="TimeTesting" Type="time" Precision="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestQuestions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDTypeQuestions" Type="int" />
+    <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerVariant1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerVariant2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerVariant3" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnswerVariant4" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CorrectAnswer" Type="int" />
+  </EntityType>
+  <EntityType Name="TypeQuestion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IDStudent" Type="int" />
+    <Property Name="IDTeacher" Type="int" />
+    <Property Name="IsTeacher" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_QuestionsReports_TestingReport">
+    <End Role="TestingReport" Type="Self.TestingReport" Multiplicity="1" />
+    <End Role="QuestionsReports" Type="Self.QuestionsReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestingReport">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="QuestionsReports">
+        <PropertyRef Name="IDTestingReport" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionsReports_TestQuestions">
+    <End Role="TestQuestions" Type="Self.TestQuestions" Multiplicity="1" />
+    <End Role="QuestionsReports" Type="Self.QuestionsReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestQuestions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="QuestionsReports">
+        <PropertyRef Name="IDTestQuestions" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestingReport_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="TestingReport" Type="Self.TestingReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="NumberStudentCard" />
+      </Principal>
+      <Dependent Role="TestingReport">
+        <PropertyRef Name="IDStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestQuestions_TypeQuestion">
+    <End Role="TypeQuestion" Type="Self.TypeQuestion" Multiplicity="0..1" />
+    <End Role="TestQuestions" Type="Self.TestQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeQuestion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TestQuestions">
+        <PropertyRef Name="IDTypeQuestions" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="NumberStudentCard" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IDStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IDTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TestModelContainer">
+    <EntitySet Name="QuestionsReports" EntityType="Self.QuestionsReports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestingReport" EntityType="Self.TestingReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestQuestions" EntityType="Self.TestQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeQuestion" EntityType="Self.TypeQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_QuestionsReports_TestingReport" Association="Self.FK_QuestionsReports_TestingReport">
+      <End Role="TestingReport" EntitySet="TestingReport" />
+      <End Role="QuestionsReports" EntitySet="QuestionsReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionsReports_TestQuestions" Association="Self.FK_QuestionsReports_TestQuestions">
+      <End Role="TestQuestions" EntitySet="TestQuestions" />
+      <End Role="QuestionsReports" EntitySet="QuestionsReports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestingReport_Student" Association="Self.FK_TestingReport_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="TestingReport" EntitySet="TestingReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestQuestions_TypeQuestion" Association="Self.FK_TestQuestions_TypeQuestion">
+      <End Role="TypeQuestion" EntitySet="TypeQuestion" />
+      <End Role="TestQuestions" EntitySet="TestQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Student" Association="Self.FK_Users_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Teacher" Association="Self.FK_Users_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

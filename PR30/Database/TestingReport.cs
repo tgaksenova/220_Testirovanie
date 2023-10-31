@@ -14,11 +14,19 @@ namespace PR30.Database
     
     public partial class TestingReport
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TestingReport()
+        {
+            this.QuestionsReports = new HashSet<QuestionsReports>();
+        }
+    
         public int id { get; set; }
         public System.DateTime DateTesting { get; set; }
         public int IDStudent { get; set; }
         public System.TimeSpan TimeTesting { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionsReports> QuestionsReports { get; set; }
         public virtual Student Student { get; set; }
     }
 }

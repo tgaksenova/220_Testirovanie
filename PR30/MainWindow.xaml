@@ -14,12 +14,35 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="LoginInput"/>
+        <TextBox x:Name="LoginInput"
+                 Style="{StaticResource MyTextBox}"
+                 FontSize="30" TextChanged="LoginInput_TextChanged"/>
+        <Label x:Name="LoginPlaceholder" 
+               Style="{StaticResource Placeholder}"
+               Content="Логин"/>
+        
         <PasswordBox x:Name="PasswordInput" 
-                     Grid.Row="1"/>
-        <Button x:Name="AuthButton" 
-                Grid.Row="2"/>
+                     Grid.Row="1"
+                     Style="{StaticResource MyPasswordBox}"
+                     FontSize="30" PasswordChanged="PasswordInput_PasswordChanged"/>
+        <Label x:Name="PasswordPlaceholder"
+               Grid.Row="1"
+               Style="{StaticResource Placeholder}"
+               Content="Пароль"/>
+        
+        <Button x:Name="AuthButton"
+                Grid.Row="2"
+                Style="{StaticResource MyButton}"
+                Content="Авторизоваться"
+                Margin="20"
+                FontSize="30"
+                Width="350" Click="AuthButton_Click"/>
         <Button x:Name="RegButton" 
-                Grid.Row="3"/>
+                Grid.Row="3"
+                Style="{StaticResource MyButton}"
+                Content="Зарегистрироваться"
+                FontSize="30"
+                Margin="20"
+                Width="350" Click="RegButton_Click"/>
     </Grid>
 </Window>

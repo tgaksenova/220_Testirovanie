@@ -9,11 +9,11 @@ namespace PR30.Database
 {
     static class SingletonModel
     {
-        private static TestingEntities _context;
+        private static TestEntities _context;
 
-        public static TestingEntities GetContext()
+        public static TestEntities GetContext()
         {
-            return _context = _context ?? new TestingEntities();
+            return _context = _context ?? new TestEntities();
         }
     }
 }

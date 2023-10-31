@@ -1,0 +1,3 @@
+{ StudentCard = 1, TestID = 1, RightAnswers = 1, QuestionsCount = 2 }
+{ StudentCard = 2, TestID = 2, RightAnswers = 0, QuestionsCount = 1 }
+{ StudentCard = 3, TestID = 3, RightAnswers = 1, QuestionsCount = 2 }

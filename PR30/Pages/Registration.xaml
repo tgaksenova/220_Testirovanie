@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PR30.Pages"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="800">
+        Title="Registration" Height="450" Width="800" Closing="Window_Closing" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,24 +17,104 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="LoginInput"/>
-        <PasswordBox x:Name="PasswordInput" 
-                     Grid.Row="1"/>
-        <CheckBox x:Name="IsTeacherBox" 
-                  Grid.Row="2"/>
-        <TextBox x:Name="SurnameInput" 
-                 Grid.Row="3"/>
-        <TextBox x:Name="NameInput" 
-                 Grid.Row="0" 
-                 Grid.Column="1"/>
-        <TextBox x:Name="PatronymicInput" 
-                 Grid.Row="1"
-                 Grid.Column="1"/>
-        <TextBox x:Name="GroupInput" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Логин" FontSize="13" 
+                       Style="{StaticResource MyTextBlock}"/>
+            <TextBox x:Name="LoginInput" 
+                     Grid.Row="1"
+                     Style="{StaticResource MyTextBox}"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Пароль" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+            <PasswordBox x:Name="PasswordInput"
+                         Grid.Row="1"
+                         Style="{StaticResource MyPasswordBox}"/>
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Аккаунт для учителя?" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+            <CheckBox x:Name="IsTeacherBox" 
+                      Grid.Row="1"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center" Click="IsTeacherBox_Click">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+
+        </Grid>
+
+        <Grid Grid.Row="3" Name="GroupGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Группа" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+            <TextBox x:Name="GroupInput"
+                 Style="{StaticResource MyTextBox}"
                  Grid.Row="2"
                  Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Column="1"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Фамилия" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+
+            <TextBox x:Name="SurnameInput"
+                     Style="{StaticResource MyTextBox}"
+                     Grid.Row="1"/>
+
+        </Grid>
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Имя" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+            <TextBox x:Name="NameInput" 
+                 Style="{StaticResource MyTextBox}"
+                 Grid.Row="1" />
+
+        </Grid>
+        <Grid Grid.Column="1"
+              Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Отчество" FontSize="13" 
+                 Style="{StaticResource MyTextBlock}"/>
+            <TextBox x:Name="PatronymicInput" 
+                 Style="{StaticResource MyTextBox}"
+                 Grid.Row="1"/>
+        </Grid>
         <Button x:Name="RegistrationButton"
                 Grid.Row="3"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Style="{StaticResource MyButton}"
+                Margin="25"
+                Content="Зарегистрироваться" Click="RegistrationButton_Click"/>
     </Grid>
 </Window>

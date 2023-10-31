@@ -14,6 +14,12 @@ namespace PR30.Database
     
     public partial class TestQuestions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TestQuestions()
+        {
+            this.QuestionsReports = new HashSet<QuestionsReports>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> IDTypeQuestions { get; set; }
         public string Question { get; set; }
@@ -23,6 +29,8 @@ namespace PR30.Database
         public string AnswerVariant4 { get; set; }
         public Nullable<int> CorrectAnswer { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionsReports> QuestionsReports { get; set; }
         public virtual TypeQuestion TypeQuestion { get; set; }
     }
 }
